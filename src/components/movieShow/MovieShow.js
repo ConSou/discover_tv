@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import no_image from '../layout/no_image.png'
 
 class MovieShow extends Component {
   constructor(props) {
@@ -25,7 +26,10 @@ class MovieShow extends Component {
       <div className="dashboard container">
       {this.state.data ?
         <div>
-          <img style={{padding : '10px'}} className="left" src={`https://image.tmdb.org/t/p/w500/${this.state.data.poster_path}`} alt="tv header" />
+          {this.state.data.poster_path ?
+            <img style={{padding : '10px'}} className="left" src={`https://image.tmdb.org/t/p/w500/${this.state.data.poster_path}`} alt="tv header" />
+            : <img style={{padding : '10px'}} width="500" height="770" src={no_image} />
+          }
           <p style={{padding : '10px'}}> {this.state.data.overview}</p>
         </div>
       : ""}
