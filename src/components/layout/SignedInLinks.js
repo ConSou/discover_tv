@@ -8,7 +8,7 @@ const SignedInLinks = (props) => {
     <ul className="right">
       <li><NavLink to="/"> Menu </NavLink></li>
       <li><a onClick={props.signOut}> Log Out</a></li>
-      <li><NavLink to="/" className="btn btn-floating pink lighten-1"> {props.profile.firstName ? props.profile.firstName[0] + props.profile.lastName[0] : null} </NavLink></li>
+      <li><NavLink to="/dashboard" className="btn btn-floating pink lighten-1"> {props.profile.firstName ? props.profile.firstName[0] + props.profile.lastName[0] : null} </NavLink></li>
     </ul>
   )
 }

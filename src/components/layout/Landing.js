@@ -24,12 +24,6 @@ class Landing extends Component {
 
   searchMovies = (e) => {
     this.setState({ search: e.target.value })
-    // fetch(`https://api.themoviedb.org/3/search/tv?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&query=${this.state.search}&page=1`)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data.results)
-    //     this.setState({ searchData: data.results })
-    //   });
   }
 
   handleSubmit = (e) => {

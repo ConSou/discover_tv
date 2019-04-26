@@ -8,7 +8,11 @@ class Dashboard extends Component {
     if(!auth.uid) return <Redirect to="/" />
     return(
       <div className="dashboard container">
-        {profile.firstName ? `Welcome ${profile.firstName}` : null}
+        <div className="row">
+            <div className="row">
+              <h4> {profile.firstName ? `${profile.firstName}'s WatchList` : null} </h4>
+          </div>
+        </div>
       </div>
     )
   }
