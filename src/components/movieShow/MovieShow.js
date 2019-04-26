@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import no_image from '../layout/no_image.png'
 import { connect } from 'react-redux'
+import { watchlist } from '../../store/actions/watchlistActions'
+import swal from 'sweetalert';
 
 class MovieShow extends Component {
   constructor(props) {
@@ -8,17 +10,39 @@ class MovieShow extends Component {
 
     this.state = {
       data: null,
+      watchListAdd: false
     };
   }
 
   componentDidMount() {
-    const { match: { params } } = this.props;
+    const { match: { params }, profile, watchlist } = this.props;
 
     fetch(`https://api.themoviedb.org/3/tv/${params.id}?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        if(profile.watchList){
+          profile.watchList.forEach((item) => {
+            if(item.name == data.name){
+              this.setState({watchListAdd: true})
+            }
+          })
+        }
         this.setState({ data })
+      });
+    }
+
+    addWatchList = () => {
+      console.log("added to watchlist")
+      this.setState({ watchListAdd: true})
+      console.log(this.props.auth.uid)
+      console.log({name: this.state.data.name, backdrop_path: this.state.data.backdrop_path, id: this.state.data.id})
+      this.props.watchlist(this.props.auth.uid, {name: this.state.data.name, backdrop_path: this.state.data.backdrop_path, id: this.state.data.id})
+      swal({
+        title: `${this.state.data.name}`,
+        text: "has been added to your watchlist",
+        icon: "success",
+        buttons: false,
+        timer: 2000
       });
     }
 
@@ -37,8 +61,8 @@ class MovieShow extends Component {
               {this.state.data.name}
               <span style={{fontSize : '20px'}} className="right"> Rating: {this.state.data.vote_average}/10 </span>
             </h3>
-            {auth.uid ?
-              <a className="waves-effect waves-light btn-small"><i className="material-icons left">add</i>Add to Watchlist</a>
+            {auth.uid && !this.state.watchListAdd ?
+              <a className="waves-effect waves-light btn-small" onClick={this.addWatchList}><i className="material-icons left">add</i>Add to Watchlist</a>
               : ""}
           </div>
           <div className="divider"></div>
@@ -63,7 +87,7 @@ class MovieShow extends Component {
             <p> Total Seasons: {this.state.data.number_of_seasons} </p>
           </div>
           <div className="divider"></div>
-          <a href={this.state.data.homepage}> View {this.state.data.name}'s website </a>
+          <a href={this.state.data.homepage} target="_blank"> View {this.state.data.name}'s website </a>
         </div>
       : ""}
       </div>
@@ -73,8 +97,15 @@ class MovieShow extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
   }
 }
 
-export default connect(mapStateToProps, null)(MovieShow);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    watchlist: (user, listItem) => dispatch(watchlist(user, listItem))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieShow);

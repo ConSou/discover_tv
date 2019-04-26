@@ -17,7 +17,6 @@ class Landing extends Component {
     fetch('https://api.themoviedb.org/3/discover/tv?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false')
       .then(response => response.json())
       .then(data => {
-        console.log(data.results)
         this.setState({ popularData: data.results })
       });
     }
