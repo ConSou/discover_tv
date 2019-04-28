@@ -36,10 +36,9 @@ react apps.  So I had to do some quick research to figure out effective ways to 
 While I am comfortable with TDD in a framework such as Rails as I have a good amount of experience I was a little hesitant that I would be able to figure out testing in this short period of time.  
 Due to this I opted to use Behavior Driven Development when creating the application while using
 Jest and Enzyme to write the testing suite.  If I had more time on this project I would
-like to spend it on testing.  In addition to this I would also like to send more time
-on the styling and CSS.  Because of the time constraints I used materalize css to help with styling the
-application.  With more time I would add more styling to make the interface easier to navigate
-and use.      
+like to spend it on creating more test and getting greater coverage.  
+
+In addition to this I would also like to send more time on the styling and CSS.  Because of the time constraints I used materalize css to help with styling the application.  With more time I would add more styling to make the interface easier to navigate and use.      
 
 All in all I believe this project solves the problem of being able to easily discover new
 TV shows effectively.  
