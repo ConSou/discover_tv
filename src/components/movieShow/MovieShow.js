@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import no_image from '../layout/no_image.png'
+import no_image from '../../no_image.png'
 import { connect } from 'react-redux'
 import { watchlist } from '../../store/actions/watchlistActions'
 import swal from 'sweetalert';
 
-class MovieShow extends Component {
+export class MovieShow extends Component {
   constructor(props) {
     super(props);
 

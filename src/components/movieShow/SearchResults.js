@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import no_image from '../layout/no_image.png'
+import no_image from '../../no_image.png'
 
 const SearchResults = (props) => {
 

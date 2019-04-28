@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import no_image from './no_image.png'
+import no_image from '../../no_image.png'
 import Search from '../movieShow/Search'
 import SearchResults from '../movieShow/SearchResults'
 import BrowsePopular from '../movieShow/BrowsePopular'
@@ -34,7 +34,9 @@ class Landing extends Component {
       .then(response => response.json())
       .then(data => {
         console.log(data.results)
-        this.setState({ searchData: data.results })
+        this.setState({ searchData: data.results }, function(){
+          console.log(this.state.searchData)
+        })
       });
   }
 

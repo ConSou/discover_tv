@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import no_image from '../layout/no_image.png'
+import no_image from '../../no_image.png'
 import { removeWatchlist } from '../../store/actions/watchlistActions'
 import swal from 'sweetalert';
 
-class Dashboard extends Component {
+export class Dashboard extends Component {
 
   removeList = (index) => {
     swal({
