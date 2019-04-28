@@ -11,6 +11,7 @@
     "react-redux-firebase": "^2.2.6",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
+    "react-test-renderer": "^16.8.6",
     "redux": "^4.0.1",
     "redux-firestore": "^0.7.2",
     "redux-thunk": "^2.3.0",
@@ -30,5 +31,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1"
+  }
 }
