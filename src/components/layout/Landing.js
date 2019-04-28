@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import no_image from './no_image.png'
+import Search from '../movieShow/Search'
+import SearchResults from '../movieShow/SearchResults'
+import BrowsePopular from '../movieShow/BrowsePopular'
 
 class Landing extends Component {
   constructor(props) {
@@ -40,33 +43,8 @@ class Landing extends Component {
       return(
         <div className="dashboard container">
           <div className="row">
-            <form className="col m12">
-              <div className="row">
-                <div className="input-field col m6">
-                  <i className="material-icons prefix">search</i>
-                  <input id="icon_prefix" type="text" className="validate" onChange={this.searchMovies}></input>
-                  <label htmlFor="icon_prefix">Search For Movies</label>
-                </div>
-                <div className="input-field col m6">
-                  <button className="btn waves-effect waves-light" type="submit" onClick={this.handleSubmit}>
-                    Search
-                  </button>
-                </div>
-              </div>
-            </form>
-            <h5> Browse Popular </h5>
-            <div>
-              {this.state.popularData && this.state.popularData.map((item, index) => {
-                return(
-                  <div style={{display : 'inline-block', padding : '10px'}} className="hoverable" key={index}>
-                    <h6 className="center-align">{item.original_name}</h6>
-                    <Link to={`/movie/${item.id}`} className="right-align">
-                      <img src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} alt="tv header"/>
-                    </Link>
-                  </div>
-                )
-              })}
-            </div>
+            <Search handleSubmit={this.handleSubmit} searchMovies={this.searchMovies}/>
+            <BrowsePopular popularData={this.state.popularData} />
           </div>
         </div>
       )
@@ -74,35 +52,8 @@ class Landing extends Component {
       return(
         <div className="dashboard container">
           <div className="row">
-            <form className="col m12">
-              <div className="row">
-                <div className="input-field col m6">
-                  <i className="material-icons prefix">search</i>
-                  <input id="icon_prefix" type="text" className="validate" onChange={this.searchMovies}></input>
-                  <label htmlFor="icon_prefix">Search For Movies</label>
-                </div>
-                <div className="input-field col m6">
-                  <button className="btn waves-effect waves-light" type="submit" onClick={this.handleSubmit}>
-                    Search
-                  </button>
-                </div>
-              </div>
-            </form>
-            <h5> Search Results </h5>
-            <div>
-              {this.state.searchData && this.state.searchData.map((item, index) => {
-                return(
-                  <div style={{display : 'inline-block', padding : '10px'}} className="hoverable" key={index}>
-                    <h6 className="center-align">{item.original_name}</h6>
-                    <Link to={`/movie/${item.id}`} className="right-align">
-                      {item.backdrop_path ?
-                      <img  width="400" height="225" src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} alt="tv header" />
-                      : <img width="400" height="225" src={no_image} />}
-                    </Link>
-                  </div>
-                )
-              })}
-            </div>
+            <Search handleSubmit={this.handleSubmit} searchMovies={this.searchMovies}/>
+            <SearchResults searchData={this.state.searchData}/>
           </div>
         </div>
       )
