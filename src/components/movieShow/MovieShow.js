@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import no_image from '../../no_image.png'
 import { connect } from 'react-redux'
 import { watchlist } from '../../store/actions/watchlistActions'
@@ -79,7 +80,7 @@ export class MovieShow extends Component {
           <div className="divider"></div>
           <div className="section" style={{padding : '10px'}}>
             <h5> History </h5>
-            <p> Release Date: {this.state.data.release_date} </p>
+            <p> Release Date: {moment(this.state.data.release_date).format('MM/DD/YYYY')} </p>
           </div>
           <div className="divider"></div>
           <a href={this.state.data.homepage} target="_blank" rel="noopener noreferrer"> View {this.state.data.title}'s website </a>

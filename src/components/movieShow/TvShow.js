@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import no_image from '../../no_image.png'
 import { connect } from 'react-redux'
 import { watchlist } from '../../store/actions/watchlistActions'
@@ -79,7 +80,7 @@ export class TvShow extends Component {
           <div className="divider"></div>
           <div className="section" style={{padding : '10px'}}>
             <h5> History </h5>
-            <p> First Air Date: {this.state.data.first_air_date} </p>
+            <p> First Air Date: {moment(this.state.data.first_air_date).format('MM/DD/YYYY')} </p>
             <p> Total Episodes: {this.state.data.number_of_episodes} </p>
             <p> Total Seasons: {this.state.data.number_of_seasons} </p>
           </div>
