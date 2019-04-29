@@ -32,10 +32,7 @@ export class MovieShow extends Component {
     }
 
     addWatchList = () => {
-      console.log("added to watchlist")
       this.setState({ watchListAdd: true})
-      console.log(this.props.auth.uid)
-      console.log({name: this.state.data.name, backdrop_path: this.state.data.backdrop_path, id: this.state.data.id})
       this.props.watchlist(this.props.auth.uid, {name: this.state.data.name, backdrop_path: this.state.data.backdrop_path, id: this.state.data.id})
       swal({
         title: `${this.state.data.name}`,
@@ -51,15 +48,15 @@ export class MovieShow extends Component {
     return(
       <div className="dashboard container">
       {this.state.data ?
-        <div>
+        <div className="section col s6">
           {this.state.data.poster_path ?
-            <img style={{padding : '30px'}} className="left" src={`https://image.tmdb.org/t/p/w500/${this.state.data.poster_path}`} alt="tv header" />
-            : <img style={{padding : '30px'}} width="500" height="770" src={no_image} />
+            <img style={{padding : '30px', marginBottom : '200px'}} className="left" src={`https://image.tmdb.org/t/p/w500/${this.state.data.poster_path}`} alt="tv header" />
+            : <img style={{padding : '30px', marginBottom : '200px'}} className="left" width="500" height="770" src={no_image} />
           }
           <div className="section" style={{padding : '10px'}}>
             <h3>
               {this.state.data.name}
-              <span style={{fontSize : '20px'}} className="right"> Rating: {this.state.data.vote_average}/10 </span>
+              <span style={{fontSize : '15px'}} className="right"> Rating: {this.state.data.vote_average}/10 </span>
             </h3>
             {auth.uid && !this.state.watchListAdd ?
               <a className="waves-effect waves-light btn-small" onClick={this.addWatchList}><i className="material-icons left">add</i>Add to Watchlist</a>

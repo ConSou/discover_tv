@@ -16,17 +16,3 @@ describe('<MovieShow />', () => {
     expect(wrapper).toHaveLength(1)
   })
 })
-
-// describe('<MovieShow /> with breaking bad', async() => {
-//   let wrapper = mount(<MovieShow match={{params: {id: 1396}}}/>, { lifecycleExperimental: true })
-//
-//   let finalWrapper = await wrapper.instance().componentDidMount()
-//
-//   it('renders show title', () => {
-//     expect(finalWrapper.find('h3').text()).toEqual(" Breaking Bad ")
-//   })
-//
-//   it('renders rating', () => {
-//     expect(finalWrapper.find('span.right').text()).toEqual(" poop ")
-//   })
-// })
