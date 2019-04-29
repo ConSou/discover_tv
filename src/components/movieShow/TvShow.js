@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { watchlist } from '../../store/actions/watchlistActions'
 import swal from 'sweetalert';
 
-export class MovieShow extends Component {
+export class TvShow extends Component {
   constructor(props) {
     super(props);
 
@@ -17,12 +17,12 @@ export class MovieShow extends Component {
   componentDidMount() {
     const { match: { params }, profile, watchlist } = this.props;
 
-    fetch(`https://api.themoviedb.org/3/movie/${params.id}?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US`)
+    fetch(`https://api.themoviedb.org/3/tv/${params.id}?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US`)
       .then(response => response.json())
       .then(data => {
         if(profile.watchList){
           profile.watchList.forEach((item) => {
-            if(item.name == data.title){
+            if(item.name == data.name){
               this.setState({watchListAdd: true})
             }
           })
@@ -33,9 +33,9 @@ export class MovieShow extends Component {
 
     addWatchList = () => {
       this.setState({ watchListAdd: true})
-      this.props.watchlist(this.props.auth.uid, {name: this.state.data.title, backdrop_path: this.state.data.backdrop_path, id: this.state.data.id, type: "movie"})
+      this.props.watchlist(this.props.auth.uid, {name: this.state.data.name, backdrop_path: this.state.data.backdrop_path, id: this.state.data.id, type: "tv"})
       swal({
-        title: `${this.state.data.title}`,
+        title: `${this.state.data.name}`,
         text: "has been added to your watchlist",
         icon: "success",
         buttons: false,
@@ -55,7 +55,7 @@ export class MovieShow extends Component {
           }
           <div className="section" style={{padding : '10px'}}>
             <h3>
-              {this.state.data.title}
+              {this.state.data.name}
               <span style={{fontSize : '15px'}} className="right"> Rating: {this.state.data.vote_average}/10 </span>
             </h3>
             {auth.uid && !this.state.watchListAdd ?
@@ -79,10 +79,12 @@ export class MovieShow extends Component {
           <div className="divider"></div>
           <div className="section" style={{padding : '10px'}}>
             <h5> History </h5>
-            <p> Release Date: {this.state.data.release_date} </p>
+            <p> First Air Date: {this.state.data.first_air_date} </p>
+            <p> Total Episodes: {this.state.data.number_of_episodes} </p>
+            <p> Total Seasons: {this.state.data.number_of_seasons} </p>
           </div>
           <div className="divider"></div>
-          <a href={this.state.data.homepage} target="_blank"> View {this.state.data.title}'s website </a>
+          <a href={this.state.data.homepage} target="_blank"> View {this.state.data.name}'s website </a>
         </div>
       : ""}
       </div>
@@ -103,4 +105,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieShow);
+export default connect(mapStateToProps, mapDispatchToProps)(TvShow);

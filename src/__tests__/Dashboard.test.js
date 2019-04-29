@@ -26,7 +26,7 @@ describe('<Dashboard /> first log in', () => {
   })
 
   it('includes a h4 with message to add to watchlist', () => {
-    expect(wrapper.find('h4').text()).toEqual(" Add to your watch list by browsing for tv shows ")
+    expect(wrapper.find('h4').text()).toEqual(" Add to your watch list by browsing for tv shows or movies ")
   })
 })
 

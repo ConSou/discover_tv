@@ -27,7 +27,6 @@ export const removeWatchlist = (user, listItem) => {
 
     let currentList = []
     firestore.collection('users').doc(user).get().then((doc) => {
-      console.log("CurrentLIst", doc.data().watchList)
       currentList = doc.data().watchList
       currentList.splice(listItem, 1)
     }).then(() => {

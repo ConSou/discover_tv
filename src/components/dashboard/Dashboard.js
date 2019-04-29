@@ -32,7 +32,7 @@ export class Dashboard extends Component {
             <div className="row">
             {profile.watchList && profile.watchList.length > 0 ?
               <h4> {profile.firstName ? `${profile.firstName}'s WatchList:` : null} </h4> :
-              <h4> Add to your watch list by browsing for tv shows </h4>}
+              <h4> Add to your watch list by browsing for tv shows or movies </h4>}
               <div>
                 {profile.watchList && profile.watchList.map((item, index) => {
                   return(
@@ -41,11 +41,17 @@ export class Dashboard extends Component {
                         {item.name}
                         <span className="right" onClick={() => {this.removeList(index)}}> <a className="waves-effect waves-red btn-flat">Remove</a> </span>
                       </h6>
+                      {item.type == "tv" ?
+                      <Link to={`/tv/${item.id}`} className="right-align">
+                        {item.backdrop_path ?
+                        <img  width="400" height="225" src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} alt="tv header" />
+                        : <img width="400" height="225" src={no_image} />}
+                      </Link> :
                       <Link to={`/movie/${item.id}`} className="right-align">
                         {item.backdrop_path ?
                         <img  width="400" height="225" src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} alt="tv header" />
                         : <img width="400" height="225" src={no_image} />}
-                      </Link>
+                      </Link>}
                     </div>
                   )
                 })}

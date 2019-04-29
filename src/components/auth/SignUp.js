@@ -28,6 +28,7 @@ class SignIn extends Component {
 
     return(
       <div className="container">
+      <p> Sign up to for access to more features including a custom watchlist! </p>
         <form onSubmit={this.handleSubmit} className="white">
           <h5 className="grey-text text-darken-3"> Sign Up </h5>
           <div className="input-field">

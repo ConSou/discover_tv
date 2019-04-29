@@ -4,6 +4,7 @@ import no_image from '../../no_image.png'
 import Search from '../movieShow/Search'
 import SearchResults from '../movieShow/SearchResults'
 import BrowsePopular from '../movieShow/BrowsePopular'
+import MovieSearchResults from '../movieShow/MovieSearchResults'
 
 class Landing extends Component {
   constructor(props) {
@@ -12,7 +13,9 @@ class Landing extends Component {
     this.state = {
       popularData: null,
       search: '',
-      searchData: null
+      searchData: null,
+      movieData: null,
+      resultType: "tv"
     };
   }
 
@@ -34,10 +37,18 @@ class Landing extends Component {
       .then(response => response.json())
       .then(data => {
         console.log(data.results)
-        this.setState({ searchData: data.results }, function(){
-          console.log(this.state.searchData)
-        })
+        this.setState({ searchData: data.results })
       });
+      fetch(`https://api.themoviedb.org/3/search/movie?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&query=${this.state.search}&page=1&include_adult=false`)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.results)
+          this.setState({ movieData: data.results })
+      });
+  }
+
+  changeResultType = (type) => {
+    this.setState({resultType: type})
   }
 
   render(){
@@ -55,7 +66,14 @@ class Landing extends Component {
         <div className="dashboard container">
           <div className="row">
             <Search handleSubmit={this.handleSubmit} searchMovies={this.searchMovies}/>
-            <SearchResults searchData={this.state.searchData}/>
+            <button className="btn waves-effect waves-light" onClick={() => {this.changeResultType("tv")}} disabled={this.state.resultType == "tv" ? true : false}>
+              TV results
+            </button>
+            <button className="btn waves-effect waves-light" onClick={() => {this.changeResultType("movie")}} disabled={this.state.resultType == "movie" ? true : false}>
+              Movie results
+            </button>
+            {this.state.resultType == "tv" ? <SearchResults searchData={this.state.searchData}/>
+             : <MovieSearchResults searchData={this.state.movieData}/>}
           </div>
         </div>
       )
