@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import no_image from '../../no_image.png'
 import Search from '../movieShow/Search'
 import SearchResults from '../movieShow/SearchResults'
 import BrowsePopular from '../movieShow/BrowsePopular'
@@ -66,13 +64,13 @@ class Landing extends Component {
         <div className="dashboard container">
           <div className="row">
             <Search handleSubmit={this.handleSubmit} searchMovies={this.searchMovies}/>
-            <button className="btn waves-effect waves-light" onClick={() => {this.changeResultType("tv")}} disabled={this.state.resultType == "tv" ? true : false}>
+            <button className="btn waves-effect waves-light" onClick={() => {this.changeResultType("tv")}} disabled={this.state.resultType === "tv" ? true : false}>
               TV results
             </button>
-            <button className="btn waves-effect waves-light" onClick={() => {this.changeResultType("movie")}} disabled={this.state.resultType == "movie" ? true : false}>
+            <button className="btn waves-effect waves-light" onClick={() => {this.changeResultType("movie")}} disabled={this.state.resultType === "movie" ? true : false}>
               Movie results
             </button>
-            {this.state.resultType == "tv" ? <SearchResults searchData={this.state.searchData}/>
+            {this.state.resultType === "tv" ? <SearchResults searchData={this.state.searchData}/>
              : <MovieSearchResults searchData={this.state.movieData}/>}
           </div>
         </div>

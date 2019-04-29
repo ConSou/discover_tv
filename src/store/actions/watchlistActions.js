@@ -1,6 +1,5 @@
 export const watchlist = (user, listItem) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
-    const firebase = getFirebase();
     const firestore = getFirestore();
 
     let newList = []
@@ -22,7 +21,6 @@ export const watchlist = (user, listItem) => {
 
 export const removeWatchlist = (user, listItem) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
-    const firebase = getFirebase();
     const firestore = getFirestore();
 
     let currentList = []

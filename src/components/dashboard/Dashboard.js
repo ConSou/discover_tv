@@ -41,16 +41,16 @@ export class Dashboard extends Component {
                         {item.name}
                         <span className="right" onClick={() => {this.removeList(index)}}> <a className="waves-effect waves-red btn-flat">Remove</a> </span>
                       </h6>
-                      {item.type == "tv" ?
+                      {item.type === "tv" ?
                       <Link to={`/tv/${item.id}`} className="right-align">
                         {item.backdrop_path ?
                         <img  width="400" height="225" src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} alt="tv header" />
-                        : <img width="400" height="225" src={no_image} />}
+                        : <img width="400" height="225" src={no_image} alt="tv header"/>}
                       </Link> :
                       <Link to={`/movie/${item.id}`} className="right-align">
                         {item.backdrop_path ?
                         <img  width="400" height="225" src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} alt="tv header" />
-                        : <img width="400" height="225" src={no_image} />}
+                        : <img width="400" height="225" src={no_image} alt="tv header"/>}
                       </Link>}
                     </div>
                   )

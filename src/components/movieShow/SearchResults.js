@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import no_image from '../../no_image.png'
 
@@ -15,7 +15,7 @@ const SearchResults = (props) => {
                 <Link to={`/tv/${item.id}`} className="right-align">
                   {item.backdrop_path ?
                   <img  width="400" height="225" src={`https://image.tmdb.org/t/p/w400/${item.backdrop_path}`} alt="tv header" />
-                  : <img width="400" height="225" src={no_image} />}
+                  : <img width="400" height="225" src={no_image} alt="tv header"/>}
                 </Link>
               </div>
             )

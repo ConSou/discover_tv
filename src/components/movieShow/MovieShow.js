@@ -15,14 +15,14 @@ export class MovieShow extends Component {
   }
 
   componentDidMount() {
-    const { match: { params }, profile, watchlist } = this.props;
+    const { match: { params }, profile } = this.props;
 
     fetch(`https://api.themoviedb.org/3/movie/${params.id}?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US`)
       .then(response => response.json())
       .then(data => {
         if(profile.watchList){
           profile.watchList.forEach((item) => {
-            if(item.name == data.title){
+            if(item.name === data.title){
               this.setState({watchListAdd: true})
             }
           })
@@ -51,7 +51,7 @@ export class MovieShow extends Component {
         <div className="section col s6">
           {this.state.data.poster_path ?
             <img style={{padding : '30px', marginBottom : '200px'}} className="left" src={`https://image.tmdb.org/t/p/w500/${this.state.data.poster_path}`} alt="tv header" />
-            : <img style={{padding : '30px', marginBottom : '200px'}} className="left" width="500" height="770" src={no_image} />
+            : <img style={{padding : '30px', marginBottom : '200px'}} className="left" width="500" height="770" src={no_image} alt="tv header"/>
           }
           <div className="section" style={{padding : '10px'}}>
             <h3>
@@ -82,7 +82,7 @@ export class MovieShow extends Component {
             <p> Release Date: {this.state.data.release_date} </p>
           </div>
           <div className="divider"></div>
-          <a href={this.state.data.homepage} target="_blank"> View {this.state.data.title}'s website </a>
+          <a href={this.state.data.homepage} target="_blank" rel="noopener noreferrer"> View {this.state.data.title}'s website </a>
         </div>
       : ""}
       </div>
